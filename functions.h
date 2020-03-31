@@ -15,6 +15,7 @@ using namespace std;
 void handleOption(string); //function prototype 
 void showMenu(); 
 double velocityCalc (double, double);
+double accelerCalc (double, double);
 string evenOddChecker(int); 
 int numberReverse(int); 
 void getMinMax(double,double,double);  
@@ -24,13 +25,14 @@ void handleOption(string userOption)
 {
     double ds; 
     double dt;
+    double dv;
     int rows = 0, num = 0;
     char theChar = '\0'; //null char '\0' 
     double num1 = 0.0, num2 = 0.0, num3 = 0.0; 
     
     if(userOption == "1")
     {
-      cout << "\n To determine the Velocity: \n";
+      cout << "\n To determine  Velocity: \n";
       cout << "\n Please enter in the ds Units \n"; 
       ds = validateDouble(ds);
       cout << "\n Please enter the dt \n";
@@ -39,11 +41,16 @@ void handleOption(string userOption)
       cout << " and " << dt <<   "for dt Units \n";
       velocityCalc (ds,dt); //call the Velocity Calculation function 
     }
-    else if(userOption == "B" || userOption == "b")
+    else if(userOption == "2")
     {
-      cout << "\nIt's Even/Odd time ya'll!" << endl; 
-      num = validateInt(num); //cin >> num; 
-      cout << "Your number is " << evenOddChecker(num) << endl; 
+      cout << "\n To determine Acceleration: \n";
+      cout << "\n Please enter in the dv Units \n"; 
+      dv = validateDouble(dv);
+      cout << "\n Please enter the dt \n";
+      dt = validateDouble(dt);
+      cout << "\n You entered" << dv << "for dv Units \n";
+      cout << " and " << dt <<   "for dt Units \n";
+      accelerCalc(dv,dt); //call the Acceleration Calculation function 
     }
     else if(userOption == "C" || userOption == "c")
     {
@@ -108,22 +115,17 @@ double velocityCalc(double ds, double dt)
 return (v);
 }
 
-string evenOddChecker(int number)
+double accelerCalc(double dv, double dt)
 {
-  string result = ""; 
-  //determine if number is even/odd assign "odd" or "even"
-  result = ( (number % 2) == 0) ? "even" : "odd"; 
-      /*
-      if( (number % 2) == 0)
-      {
-        result = "even"; 
-      }
-      else if((number % 2) == 1)
-      {
-        result = "odd"; 
-      }
-      */
-  return result;
+   //Process
+    string dvUnits = " m/sec";
+    string dtUnits;
+        double a  = dv / dt;
+
+        //Output:
+
+        cout << a << dvUnits << "/" << dtUnits << endl;  
+return (a);
 }
 
 int numberReverse(int number)
