@@ -31,7 +31,7 @@ void handleOption(string userOption)
     if(userOption == "1")
     {
       cout << "\n To determine the Velocity: \n";
-      cout << "\n Please enter in the ds Units \n";
+      cout << "\n Please enter in the ds Units \n"; 
       ds = validateDouble(ds);
       cout << "\n Please enter the dt \n";
       dt = validateDouble(dt);
