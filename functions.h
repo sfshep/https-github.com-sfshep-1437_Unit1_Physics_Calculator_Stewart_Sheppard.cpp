@@ -16,7 +16,7 @@ void handleOption(string); //function prototype
 void showMenu(); 
 double velocityCalc (double, double);
 double accelerCalc (double, double);
-void showSubmenu();
+void motionSubCalc();
 double newtons2nd(double, double);
 double earthWeight(double, double);
 double moMentum(double, double);
@@ -55,14 +55,17 @@ void handleOption(string userOption)
       dv = validateDouble(dv);
       cout << "\n Please enter the dt \n";
       dt = validateDouble(dt);
-      cout << "\n You entered" << dv << "for dv Units \n";
-      cout << " and " << dt <<   "for dt Units \n";
+      cout << "\n You entered " << dv << " for dv Units \n";
+      cout << " and " << dt <<   " for dt Units \n";
       accelerCalc(dv,dt); //call the Acceleration Calculation function 
     }
     else if(userOption == "3")
     {
-      cout << "\nWould you like to calculate motion? ";
-      cout << "\nPress \"Y\" to continue, or press \"R\" to return to main menu. "; 
+      motionSubCalc();
+      cout << "\nI didn not allow enough time to figure the best way to make this work. ";
+      cout << "\nThis is merely a place holder and non-working.";
+      cout << "\n\n\n\n\n"; 
+      
       
     }
 
@@ -75,7 +78,9 @@ void handleOption(string userOption)
       a = validateDouble(a);
       cout << "\n You entered " << m << " for mass Units \n";
       cout << " and " << a <<   " for accerlation units \n";
-      cout << "\n\n"<< newtons2nd(m,a)<< endl; //call the Newton's 2nd Law Calculation function 
+      newtons2nd(m,a);
+      //cout << "\n\n"<< newtons2nd(m,a)<< endl; 
+      //call the Newton's 2nd Law Calculation function 
    
     }
     
@@ -88,7 +93,9 @@ void handleOption(string userOption)
       g = validateDouble(g);
       cout << "\n You entered " << m << " for mass Units \n";
       cout << " and " << g <<   " for gravity units \n";
-      cout << "\n\n"<< earthWeight(m,g)<< endl; //call the Weight Calculation function 
+      earthWeight(m,g); 
+      //cout << "\n\n"<< earthWeight(m,g)<< endl; 
+      //call the Weight Calculation function 
    
     }
 
@@ -101,7 +108,9 @@ void handleOption(string userOption)
       v = validateDouble(v);
       cout << "\n You entered " << m << " for mass Units \n";
       cout << " and " << v <<   " for velocity units \n";
-      cout << "\n\n"<< moMentum(m,v)<< endl; //call the Weight Calculation function 
+      moMentum(m,v);
+      //cout << "\n\n"<< moMentum(m,v)<< endl; 
+      //call the Weight Calculation function 
    
     }
 
@@ -156,12 +165,11 @@ double accelerCalc(double dv, double dt)
 {
    //Process
     string dvUnits = " m/sec";
-    string dtUnits;
-        double a  = dv / dt;
+    double a  = dv / dt;
 
         //Output:
 
-        cout << a << dvUnits << "/" << dtUnits << endl;  
+        cout << "Acceleration is equal to " << a << dvUnits <<  endl;  
 return (a);
 }
 
@@ -185,7 +193,7 @@ double newtons2nd(double m,double a)
 
         //Output:
 
-        cout << N << NUnits << endl;  
+        cout << "Newton's 2nd law is equal to " << N << NUnits << endl;  
 return (N);
 
 }
@@ -199,7 +207,7 @@ double earthWeight(double m,double g)
 
         //Output:
 
-        cout << W << WUnits << endl;  
+        cout << "Weight is equal to " << W << WUnits << endl;  
 return (W);
 
 }
@@ -213,7 +221,7 @@ double moMentum(double m,double v)
 
         //Output:
 
-        cout << P << PUnits << endl;  
+        cout << "Momentum is equal to " << P << PUnits << endl;  
 return (P);
 
 }

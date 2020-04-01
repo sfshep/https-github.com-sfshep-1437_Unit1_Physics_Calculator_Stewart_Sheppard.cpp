@@ -6,7 +6,7 @@ A decision program menu to help students who are taking a Physics
 #include "functions.h" //reference the header file 
 
 int main() 
-{
+{ 
   string option = ""; //the option local to int main()
   string color = "\x1b[" + to_string(32) + ";1m";
   string reset = "\x1b[0m";
