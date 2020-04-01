@@ -16,29 +16,36 @@ void handleOption(string); //function prototype
 void showMenu(); 
 double velocityCalc (double, double);
 double accelerCalc (double, double);
-string evenOddChecker(int); 
-int numberReverse(int); 
-void getMinMax(double,double,double);  
+void showSubmenu();
+double newtons2nd(double, double);
+double earthWeight(double, double);
+double moMentum(double, double);
+  
 
 //put definitions here
 void handleOption(string userOption)
 {
-    double ds; 
-    double dt;
-    double dv;
-    int rows = 0, num = 0;
-    char theChar = '\0'; //null char '\0' 
-    double num1 = 0.0, num2 = 0.0, num3 = 0.0; 
+    double ds; //represents displacment
+    double dt; // represents time
+    double dv; //represents delta-v (change in velocity0
+    double m;  //represents mass
+    double a;  // represents accerlation
+    double g; // represents gravity
+    double v; // velocity
+    //string subMotion;
+    //int rows = 0, num = 0;
+    //char theChar = '\0'; //null char '\0' 
+    //double num1 = 0.0, num2 = 0.0, num3 = 0.0; 
     
     if(userOption == "1")
     {
-      cout << "\n To determine  Velocity: \n";
-      cout << "\n Please enter in the ds Units \n"; 
+      cout << "\n To determine Velocity: \n";
+      cout << "\n Please enter in the ds units \n"; 
       ds = validateDouble(ds);
-      cout << "\n Please enter the dt \n";
+      cout << "\n Please enter the dt units \n";
       dt = validateDouble(dt);
-      cout << "\n You entered" << ds << "for ds Units \n";
-      cout << " and " << dt <<   "for dt Units \n";
+      cout << "\n You entered " << ds << " for ds Units \n";
+      cout << " and " << dt <<   " for dt Units \n";
       velocityCalc (ds,dt); //call the Velocity Calculation function 
     }
     else if(userOption == "2")
@@ -52,24 +59,54 @@ void handleOption(string userOption)
       cout << " and " << dt <<   "for dt Units \n";
       accelerCalc(dv,dt); //call the Acceleration Calculation function 
     }
-    else if(userOption == "C" || userOption == "c")
+    else if(userOption == "3")
     {
-      cout << "\nIt's reverse number time!"; 
-      cout << "What number would you like to reverse: "; 
-      num = validateInt(num); //cin >> num; 
-      cout << "\nYour number Reversed is " << numberReverse(num) << endl; 
+      cout << "\nWould you like to calculate motion? ";
+      cout << "\nPress \"Y\" to continue, or press \"R\" to return to main menu. "; 
+      
     }
-    else if(userOption == "D" || userOption == "d")
-    { 
-      cout << "\nIt's min/max time ya'll" << endl ;
-      cout << "Please enter 3 numbers (enter between each): "; 
-      //cin >> num1 >> num2 >> num3; 
-      num1 = validateDouble(num1);
-      num2 = validateDouble(num2); 
-      num3 = validateDouble(num3); 
-      getMinMax(num1,num2,num3); //function call of a void function
 
+    else if(userOption == "4")
+    { 
+      cout << "\n To determine Newton\'s Second Law. \n";
+      cout << "\n Please enter in the mass \"m\" units \n"; 
+      m = validateDouble(m);
+      cout << "\n Please enter the acceleration \"a\" units. \n";
+      a = validateDouble(a);
+      cout << "\n You entered " << m << " for mass Units \n";
+      cout << " and " << a <<   " for accerlation units \n";
+      cout << "\n\n"<< newtons2nd(m,a)<< endl; //call the Newton's 2nd Law Calculation function 
+   
     }
+    
+    else if(userOption == "5")
+    { 
+      cout << "\n To determine Weight. \n";
+      cout << "\n Please enter in the mass \"m\" units \n"; 
+      m = validateDouble(m);
+      cout << "\n Please enter the gravity \"g\" units. \n";
+      g = validateDouble(g);
+      cout << "\n You entered " << m << " for mass Units \n";
+      cout << " and " << g <<   " for gravity units \n";
+      cout << "\n\n"<< earthWeight(m,g)<< endl; //call the Weight Calculation function 
+   
+    }
+
+    else if(userOption == "6")
+    { 
+      cout << "\n To determine Momentum. \n";
+      cout << "\n Please enter in the mass \"m\" units \n"; 
+      m = validateDouble(m);
+      cout << "\n Please enter the velocity \"v\" units. \n";
+      v = validateDouble(v);
+      cout << "\n You entered " << m << " for mass Units \n";
+      cout << " and " << v <<   " for velocity units \n";
+      cout << "\n\n"<< moMentum(m,v)<< endl; //call the Weight Calculation function 
+   
+    }
+
+
+
     else if(userOption == "X" || userOption == "x")
     {
       string reset = "\x1b[0m";
@@ -99,19 +136,19 @@ void showMenu()
   cout << "5: Calculate Weight" << endl;
   cout << "6: Calculate Momentum" << endl;
   cout << "E: Exit" << endl; 
-  cout << "X: clear the screen" << endl;  
+  cout << "X: clear the screen" << endl;   
 }
-//definintion 
+//definintion  
 double velocityCalc(double ds, double dt)
 {
    //Process
-    string dtUnits;
-    string dsUnits;
+    string dtUnits = " km/hour ";
+    //string dsUnits;
         double v  = ds / dt;
 
         //Output:
 
-        cout << v << dsUnits << "/" << dtUnits << endl;  
+        cout << "Velocity is equal to: " << v << dtUnits << endl;  
 return (v);
 }
 
@@ -128,64 +165,59 @@ double accelerCalc(double dv, double dt)
 return (a);
 }
 
-int numberReverse(int number)
+void motionSubCalc()
 {
-  int reversedNumber = 0, rem = 0;
-  //reverse process
-  while(number != 0)
-  {
-    rem = number % 10; 
-   //   cout << rem << ","; 
-    reversedNumber = reversedNumber*10+rem; 
-    //  cout << reversedNumber << ","; 
-    number /= 10; //int division
-   //   cout << number << endl; 
-  } //per javaPoint.com 
+  cout << "\nMotion MENU" << endl; 
+  cout << "=============" << endl;
+  cout << "1: Solve for v " <<endl; 
+  cout << "2: Solve for s " << endl; 
+  cout << "3: Solve for v^2 " << endl; 
+  cout << "4: Solve for v_bar " << endl; 
   
-  return reversedNumber; 
 }
 
-void getMinMax(double n1,double n2,double n3)
-{    
-   string color = "";
-   string reset = "\x1b[0m";
-    //Max test block 
-    if(n1 > n2 && n1 > n3)
-    { 
-      color = "\x1b[" + to_string(36) + ";1m";
-      cout << "\nMax is " << color << n1 << reset << endl; 
-    }
-    else if(n2 > n1 && n2 > n3)
-    {
-      color = "\x1b[" + to_string(42) + ";1m";
-      cout << "\nMax is " << color << n2 << reset << endl; 
-    }
-    else if(n3 > n2 && n3 > n1)
-    {
-      cout << "\nMax is " << n3 << endl; 
-    }
-    else
-    {
-      cout << "\nThe numbers are the same, or something went wrong.\n"; 
-    }
-    //Min test block
-    if(n1 < n2 && n1 < n3)
-    {
-      cout << "\nMin is " << n1 << endl; 
-    }
-    else if(n2 < n1 && n2 < n3)
-    {
-      cout << "\nMin is " << n2 << endl; 
-    }
-    else if(n3 < n2 && n3 < n1)
-    {
-      cout << "\nMin is " << n3 << endl; 
-    }
-    else
-    {
-      cout << "\nThe numbers are the same, or something went wrong.\n"; 
-    } 
+double newtons2nd(double m,double a)
+{
+//Process
+    string NUnits = " = kg m/s^2 ";
+   
+        double N  = m * a;
 
+        //Output:
+
+        cout << N << NUnits << endl;  
+return (N);
 
 }
+
+double earthWeight(double m,double g)
+{
+//Process
+    string WUnits = " = lbs ";
+   
+        double W  = m * g;
+
+        //Output:
+
+        cout << W << WUnits << endl;  
+return (W);
+
+}
+
+double moMentum(double m,double v)
+{
+//Process
+    string PUnits = " = kg m/s ";
+   
+        double P  = m * v;
+
+        //Output:
+
+        cout << P << PUnits << endl;  
+return (P);
+
+}
+
+
+
 #endif
